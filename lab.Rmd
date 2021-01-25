@@ -96,7 +96,6 @@ ggplot(
   geom_?()
 ```
 
-
 ## Task 03
 
 Create a box plot which shows how `price` varies across diamonds of different
@@ -106,7 +105,6 @@ Create a box plot which shows how `price` varies across diamonds of different
 ## YOUR CODE HERE
 
 ```
-
 
 ## Task 04
 
@@ -121,7 +119,6 @@ Canvas.)
 ## YOUR CODE HERE
 
 ```
-
 
 ## Task 05
 
@@ -138,7 +135,6 @@ diamond prices? (The default number of bins, 30, is fine.)
 
 ```
 
-
 ## Task 06
 
 Create a second histogram of diamond price, and stratify this by diamond cut.
@@ -150,7 +146,6 @@ Create a second histogram of diamond price, and stratify this by diamond cut.
 ## YOUR CODE HERE
 
 ```
-
 
 # Next Steps
 
