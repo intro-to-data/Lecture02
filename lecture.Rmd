@@ -1,0 +1,492 @@
+---
+title: "Introduction to `ggplot`"
+author: "Andy Choens"
+date: "Week 02"
+output: 
+  html_notebook:
+    toc: true
+    toc_float:
+      toc_collapsed: true
+    toc_depth: 3
+    number_sections: true
+    theme: cerulean
+---
+
+# Tonight
+
+- Learning Isn't Easy
+- Data Life Cycle
+- Last Week Tonight
+    - A word on `library()`
+    - Accessing a column
+- Intro To Data Viz - GGPLOT
+
+Read over this document. It will help you get oriented to the lab. Although you
+don't need to complete the lab before class. But I do recommend looking at it.
+If you come to class prepared, we can spend our class time doing fun stuff
+like trying out your ideas, answering your questions, digging into data. Or, I
+can lecture for an hour and a half and you can all take another nap.
+
+You can read this documentation one of TWO ways:
+
+1. As-is.
+2. Hit the Preview button in the menu and render the discussion into a
+   HTML document. (This is the pretty option.)
+
+
+
+# Learning isn't easy
+
+> The bad news is that when ever you learn a new skill your going to suck. It’s
+going to be frustrating. The good news is that is typical and happens to
+everyone and it is only temporary. You can’t go from knowing nothing to becoming
+an expert without going through a period of great frustration and great
+suckiness.
+**--Hadley Wickham**
+
+In addition to these lecture notes, labs, readings, videos, etc. there are other
+ways to find help.
+
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/r)
+- [Tidyverse Learn](https://www.tidyverse.org/learn/)
+- `?mean` If you prepend a `?` to a command, R provide you with built-in 
+  function documentation.
+- [ggplot reference](https://ggplot2.tidyverse.org/reference/index.html#section-plot-basics)
+- [Use Google Search](https://www.google.com/search?source=hp&ei=y-kNYLykM_-i5NoPo5m76AE&q=R+mean&oq=R+mean&gs_lcp=CgZwc3ktYWIQAzILCAAQsQMQgwEQyQMyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6CAgAEOoCEI8BOggIABCxAxCDAToICC4QsQMQgwE6CAguEMcBEKMCOg4ILhCxAxCDARDHARCjAjoCCC46DgguELEDEIMBEMkDEJMCOggILhDHARCvAToFCAAQsQM6BQguELEDOgUIABDJA1DkFVifGmCmHGgBcAB4AIAB0gGIAegIkgEFMC40LjKYAQCgAQGqAQdnd3Mtd2l6sAEK&sclient=psy-ab&ved=0ahUKEwj8tcrlxLXuAhV_EVkFHaPMDh0Q4dUDCAg&uact=5)
+
+Long story short, programming is not easy. And it can be frustrating when you 
+are learning. I'd like to have a class forum, but we need to make this decision
+together.
+
+- Class Forum?
+    - Yes/No
+    - If Yes, How?
+
+Let's discuss in class.
+
+# Data Life Cycle
+
+```{r echo=false, fig.align='center'}
+url <- "https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png"
+knitr::include_graphics(url)
+```
+
+One of the high-level goals of this class is to help you become familiar with
+this data life cycle.
+
+- Import (CSV, Excel, web-scraping, API, databases)
+- Munge (Tidy/Transform)
+- Visualize/Model
+- Communicate (Write a report, lab, etc.)
+
+A traditional statistics course will do SOME data-viz and a bunch of modeling.
+
+- **Good News:** Modeling is important!
+- **Bad News:** Data is never clean or shaped the way you need it. And a good plot 
+  is worth a thousand t-tests.
+- Do you see how I'm using plain text to provide structure/emphasis?
+
+**_Tonight, we will introduce data viz using ggplot._**
+
+
+
+# Last Week Tonight
+
+```{r echo=false, fig.align='center'}
+url <- "https://imgs.xkcd.com/comics/drinking_fountains.png"
+knitr::include_graphics(url)
+```
+
+## Library
+
+- You will see `library(tidyverse)` at the top of nearly everything we do.
+    - This is a package.
+    - Similar to Chrome extensions.
+- The tidyverse is actually a metapackage which contains a dozen or so packages.
+    - These packages share a common style/work-flow and form the core of what
+      we would consider "modern" R.
+    - And it's easier than loading them all individually.
+    - If you are following along at home, and none of my examples work, maybe
+      you need to load the tidyverse.
+    - This package includes `ggplot2` which is the most widely use data-viz
+      package on R.
+
+## Code Chunks
+
+- Rmd files, also called RMarkdown files, contain plain text and computer code.
+- The code usually lives in a thing called a code chunk. It is fenced like 
+this:
+
+```{r}
+## THIS IS AN EMPTY CODE CHUNK!
+
+```
+
+## Some Data
+
+- R comes with example data sets.
+- Each column in a data frame is a vector.
+- To learn more about this data set, `?chickwts`
+- Let's take a look at what we have here.
+- If the code below fails, make sure you have loaded the data by running this
+  code chunk.
+
+```{r eval=FALSE}
+## The first command fails if you haven't loaded the tidyverse.
+
+data("chickwts")
+chickwts
+?chickwts ## This opens the data documentation in the Help pane.
+```
+
+Now that's we've seen the data, let's plot it. Let's look at the distribution
+of chick weight by feed type.
+
+```{rm fig.align='center', eval=FALSE}
+data("chickwts")
+
+ggplot( 
+  data = chickwts,
+  aes(x = feed, y = weight)
+  ) +
+  geom_boxplot()
+```
+
+Oooh. I bet that returned an error.
+
+- PLEASE REMEMBER WHAT THIS KIND OF AN ERROR LOOKS LIKE!!!!
+- This error is telling you you haven't imported the tidyverse packages.
+- Try running the NEXT code chunk. Can you spot the difference?
+
+```{r fig.align='center', message=FALSE, warning=FALSE, paged.print=TRUE}
+library(tidyverse)
+data("chickwts")
+
+ggplot( 
+  data = chickwts,
+  aes(x = feed, y = weight)
+  ) +
+  geom_boxplot()
+```
+
+- We will often need several packages.
+- I load these at the top of the notebook in a code chunk called `setup`.
+- You only need do this once per session.
+- I will, however, often put them somewhere if I think it is possible you might
+  have skipped the upper part of the lab/lecture.
+
+## Data Frame Review
+  
+- You can use the `$` operator to access a column.
+
+```{r}
+chickwts$weight ## SO many different chicks
+```
+
+And you can apply a function to a column.
+
+```{r}
+mean(chickwts$weight)
+sd(chickwts$weight)
+```
+
+You can even make  new data frame from this!
+
+```{r}
+d <- data.frame(
+  avg = mean(chickwts$weight),
+  sd = sd(chickwts$weight)
+)
+d
+```
+
+R is a functional programming language. This means we will apply functions 
+(like `mean()`) to objects (like `chickwts`) to produce a result.
+
+- Good function names are verbs. (Stats functions like `mean()` are exceptions.)
+- Good object/data frame names are nouns.
+
+
+
+# Intro to Data Viz
+
+```{r echo=false, fig.align='center'}
+url <- "https://imgs.xkcd.com/comics/data.png"
+knitr::include_graphics(url)
+```
+
+## Data Visualization Skillz!
+
+- Who can tell me about (why we us it, what kind of data to use it with):
+    - histogram?
+    - bar plot?
+    - density plot?
+    - scatter plot?
+    - violin plot? (Yes, this is a thing.)
+- Good tips: [https://www.data-to-viz.com/](https://www.data-to-viz.com/)
+    
+There are may more. But these are the basics. Please note that this list has 
+more tools/options for continuous data than it does for categorical data.
+
+## Class Survey!
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+ClassSurvey <- read_csv("includes/ClassSurvey.csv")
+ClassSurvey
+```
+- Names have been abbreviated.
+- I removed columns where you "wrote" something to me.
+    - The goal here is not to embarrass anyone, but to have a simple/fun data
+      set about all of you.
+    - Is this scientific? Alas, no.
+- We can/will use this to help learn about Data Viz using R.
+
+## What year are you in at ACPHS?
+
+- Select the option that best describes where you are in your educational
+journey.
+   - 1st Year (Freshman)
+   - 2nd Year (Sophomore)
+   - 3rd Year (Junior)
+   - 4th Year (Senior)
+   - 5+ (You like it here)
+   - 999 (Grad School)
+
+Before plotting:
+- What kind of data are we plotting?
+- What plot type is best for this data type?
+
+```{r fig.align='center'}
+## Two rows of code.
+## And a plot.
+ggplot(data = ClassSurvey, aes(x = WhatYear)) +
+  geom_bar() ## geom_bar == bar plot!
+```
+
+The ggplot pattern:
+
+- `ggplot(data = Foo, aes(x = x, y = y, color = bar))`: Creates the plot/space.
+- `geom_something() +`: Defines what type of plot we want.
+- `stuff()`: Helper definitions to define our plot.
+- `facet_wrap(~c)`: Stratifies our results.
+
+Example:
+
+```{r fig.align='center'}
+## Two rows of code.
+## And a plot.
+ggplot(data = ClassSurvey, aes(x = WhatYear)) +
+  geom_bar() +
+  facet_wrap(~DegreeProgram)  ## PLEASE NOTIVE THE USE OF THE TILDA!!!!
+```
+
+## Percent, not counts
+
+- Sometimes, you don't want the different COUNTS of things, but the percent.
+- The shape of the previous plot and the next plot are identical, but please
+  see how the y-axis has a very different range.
+
+```{r fig.align='center'}
+## This is the pure ggplot way to do this.
+## I rarely do it this way, but it does work.
+ggplot(ClassSurvey, mapping = aes(x = WhatYear, y = 100*(..count..)/sum(..count..) )) +
+  geom_bar(fill="darkred") +
+  labs(y = "Percent", x="Year In School") +
+  ylim(0,100)
+```
+
+## What is your current age?
+
+- In reality, age is a continuous number.
+- But we rarely capture it that way.
+- We often discretize age, which is unwise, but that's another lesson.
+- Age is a discrete numeric, so we should not use a box plot on it.
+- And this looks a mess.
+
+```{r fig.align='center'}
+ggplot(ClassSurvey, aes(x = CurrentAge)) +
+  geom_histogram(fill="darkred") + ## geom_histogram: HISTOGRAM!!!
+  labs(title = "Student Age", x = "Current  Age", y = "N")
+```
+
+In our data, we didn't collect anyone's age as 19.2 or 19.8 although this is 
+obviously true. So, although histogram is arguably the right type of plot, 
+it doesn't actually work.
+
+But, we can get a nice looking plot using the . . . bar plot!?!
+
+```{r fig.align='center'}
+ggplot(ClassSurvey, aes(x = as.factor(CurrentAge))) +
+  geom_bar(fill="darkred") +
+  labs(title = "Student Age", x = "Current  Age", y = "N")
+```
+
+## YOUR TURN
+
+Do your classmates like math? Use the column `LikeMath` to answer this.
+
+```{r fig.align='center'}
+## YOUR CODE HERE!
+
+```
+
+- Now, let's compare your collective love of math across degree program.
+- Stratify (`facet_wrap()`) by `DegreeProgram`.
+
+```{r fig.align='center'}
+## YOUR CODE HERE!
+
+```
+
+The truth is, there aren't very many questions I can easily ask on a "class 
+survey" which will result in a truly continuous variable. I could ask you your
+age in days or your height in inches (or centimeters). But most of our survey
+data is categorical, which will be interesting on the lab.
+
+## Plotting numerical chick data
+
+We can use the `chickwts` data from before to better understand how a
+histogram works.
+
+```{r fig.align='center'}
+ggplot(chickwts, aes(x = weight)) +
+  geom_histogram(fill="darkblue") +
+  labs(title = "Chick Weight Distribution", x = "Weight (gm)", y = "N")
+```
+
+- We can see that chick weight is _slightly_ bi-modal and long-tailed.
+- Notice that R is asking us to manually set the number of bins in our plot.
+- `geom_histogram` has a parameter called `bins`, which sets the number of bars
+  in the histogram.
+- This is different from a bar chart, where the number of bars is determined
+  on the number of factors in the columns.
+- How do we know what to set the bins to?
+
+There are standards:
+
+- [https://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width](https://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width)
+- Square-root choice: `r sqrt(length(mpg$cty))`
+this case.)
+- [Sturges' formula](="https://wikimedia.org/api/rest_v1/media/math/render/svg/c020d823eb7a197d7db70bc66f8189c2ed7782b8"):
+    - `r log2(length(mpg$cty))+1`
+- With this many standards, you may be forgiven for thinking there is no
+  standard.
+- And you would be right. The question is really this - what are you trying to
+  show about the distribution of the data?
+
+But, there are other ways to show the distribution of a continuous variable
+such as a density plot. (I like density plots.)
+  
+```{r fig.align='center'}
+ggplot(chickwts, aes(x = weight)) +
+  geom_density(color="darkblue") +
+  labs(title = "Chick Weight Distribution", x = "Weight (gm)")
+```
+
+- This is the same basic graph, but it is shown using a density plot. 
+- The area under the graph must be equal to 1.
+- Notice that for a box plot, I used `fill` to change the color. For density 
+  plots, use `color` instead.
+- And if we want to go overboard, we can do both in one plot.
+
+```{r fig.align='center'}
+ggplot(chickwts, aes(x = weight)) +
+  geom_histogram(aes(y = stat(density)), fill="darkblue", binwidth = 10) +
+  geom_density(color = "black") +
+  labs(title = "Chick Weight Distribution", x = "Weight (gm)", y = "N")
+```
+
+- [IMS: Histogram](https://openintro-ims.netlify.app/summarizing-visualizing-data.html?q=histo#histograms)
+
+There are other ways we can try to understand the distribution of chick weight.
+- box plots
+- violin plots
+
+```{r fig.align='center'}
+ggplot(chickwts, aes(x = feed, y = weight)) +
+  geom_boxplot(color="darkblue") +
+  labs(title = "Chick Weight Distribution", x = "Feed Type", y = "Weight (gm)")
+```
+
+```{r fig.align='center'}
+ggplot(chickwts, aes(x = feed, y = weight)) +
+  geom_violin(color="darkblue") +
+  labs(title = "Chick Weight Distribution", x = "Feed Type", y = "Weight (gm)")
+```
+
+If you aren't familiar with these:
+
+- [IMS Box Plots](https://openintro-ims.netlify.app/summarizing-visualizing-data.html?q=box%20#box-plots-quartiles-and-the-median)
+- Violin plots are not in IMS, and we can talk about them in class.
+
+## Graphing continuous variables
+
+We will switch to another data set now, the mpg data.
+
+```{r}
+data(mpg)
+mpg
+?mpg
+```
+
+A scatter plot let's us show the RELATIONSHIP between two continuous variable.
+
+```{r fig.align='center'}
+## This is slightly different from what is shown in the book.
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = manufacturer)) + 
+  geom_point()
+```
+
+- What do we call the variable on the X Axis?
+- What do we call the variable on the Y Axis?
+- What are we implying about these two numbers?
+- [IMS Scatter Plots](https://openintro-ims.netlify.app/summarizing-visualizing-data.html?q=scatt#scatterplots)
+
+And we can even add a regression line.
+
+```{r fig.align='center'}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+   geom_point(color = "steelblue", size = 2) +
+   geom_smooth(method = "lm", color="maroon", size = 1.5)
+```
+
+Ooooh. Pretty colors.
+
+## Facets
+
+When we want to stratify our results, we can use facet_wrap, again.
+
+```{r fig.align='center'}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+   geom_point(color = "steelblue", size = 2) +
+   geom_smooth(method = "lm", color="maroon", size = 1.5) +
+   facet_wrap(~class, nrow = 2)
+```
+
+## Correlation Plot
+
+```{r fig.align='center'}
+## Slightly tougher
+library(GGally) ## Yet Another Package
+ggcorr(mpg, label = TRUE)
+```
+
+- This is not in the book.
+- But it is useful.
+- We need to unpack this a little. First, what is this telling us and how might
+  it be useful?
+
+```{r}
+cor(mpg$cty, mpg$hwy)
+```
+
+
+
+# Questions?
+
+```{r echo=false, fig.align='center'}
+url <- "./includes/ggplot-logo.png"
+knitr::include_graphics(url)
+```
+

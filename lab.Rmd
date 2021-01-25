@@ -1,0 +1,159 @@
+---
+title: "Introduction to `ggplot`"
+author: "YOUR NAME HERE"
+date: "Week 02"
+output: html_notebook
+---
+
+
+
+# Week 02 - Flowers for Algernon
+
+> Anyone who has common sense will remember that the bewilderments of the eye
+ are of two kinds, and arise from two causes, either from coming out of the light
+ or from going into the light, which is true of the mind's eye, quite as much as
+ of the bodily eye.
+
+Our data set this week is the `diamonds` data set. It contains the price and
+attributes of nearly 54,000 round cut diamonds. Variables include:
+
+- **price:** price in US dollars (\$326–\$18,823)
+- **carat:** weight of the diamond (0.2–5.01)
+- **cut:** quality of the cut (Fair, Good, Very Good, Premium, Ideal)
+- **color:** diamond color, from D (best) to J (worst)
+- **clarity:** a measurement of how clear the diamond is (I1 (worst), SI2, SI1, VS2,
+VS1, VVS2, VVS1, IF (best))
+- **x:** length in mm (0–10.74)
+- **y:** width in mm (0–58.9)
+- **z:** depth in mm (0–31.8)
+- **depth:** total depth percentage = z / mean(x, y) = 2 * z / (x + y) (43–79)
+- **table:** width of top of diamond relative to widest point (43–95)
+ 
+You do not need to be knowledgeable about diamonds or their cut/value to succeed
+on this lab. All you need is the data and a touch of common sense.
+
+```{r echo=false, fig.align='center'}
+url <- "https://imgs.xkcd.com/comics/scientific_paper_graph_quality.png"
+knitr::include_graphics(url)
+```
+
+
+
+# Stories from Data
+
+One of the most important skills you can learn is how to effectively understand
+data visually. To do so, you must first understand when to use different kinds
+of graphs/plots of data.
+
+Below are some useful links which we discussed in class:
+- [Data To Viz](https://www.data-to-viz.com/)
+- [GGPlot Documentation](https://ggplot2.tidyverse.org/index.html)
+
+To get help with ANY command in R, prepend the function name with a question
+mark. For example, to get help with the `length` command, enter `?length` in the
+R Console and RStudio will display the help documentation for that function. This
+is a very useful feature.
+
+
+
+# Lab
+
+## Task 01
+
+- Load the tidyverse and our data.
+- Look at the output from this code chuck. How many rows of data are in the 
+  diamonds data set?
+
+```{r}
+## ALWAYS load needed packages BEFORE trying to use them.
+## The tidyverse gives us our graphing tools. 
+## And readr gives us a good way to import CSV files.
+
+library(tidyverse)
+data(diamonds)
+diamonds
+``` 
+
+Fun Fact: One year I asked students to complete this lab in Excel. It crashed
+the VMs in the lab. Excel can do this, but it takes quite a bit of RAM.
+
+## Task 02
+
+ Create a scatter plot which shows the relationship between `carat` and `price`.
+
+   - The first step is to use the `ggplot` function.
+   - See `geom_point()`
+
+The following code chunk won't work until you replace all the ?s. Note the red 
+circles to the left of the line numbers. This is RStudio telling you the code 
+has some problems. In this case, that's not an accident but it often is.
+
+```{r}
+ggplot(
+  data = ?,
+  aes(x = ?, y = ?)
+) +
+  geom_?()
+```
+
+
+## Task 03
+
+Create a box plot which shows how `price` varies across diamonds of different
+`clarity`.
+
+```{r}
+## YOUR CODE HERE
+
+```
+
+
+## Task 04
+
+Create a bar plot to determine the most common diamond `cut` in this data set.
+
+   - `geom_bar()` will be useful.
+   
+Question: What is the most common diamond `cut`? (You will need to know this for
+Canvas.)
+
+```{r}
+## YOUR CODE HERE
+
+```
+
+
+## Task 05
+
+Create a histogram of diamond price. Do you notice anything about the
+distribution of diamond prices? How would you describe the distribution of
+diamond prices? (The default number of bins, 30, is fine.)
+
+   - See `geom_histogram`
+   - [Normal Distribution - Wikipedia](https://en.wikipedia.org/wiki/Normal_distribution)
+   - [Long Tail - Wikipedia](https://en.wikipedia.org/wiki/Long_tail)
+
+```{r}
+## YOUR CODE HERE
+
+```
+
+
+## Task 06
+
+Create a second histogram of diamond price, and stratify this by diamond cut.
+   - Use `facet_wrap()`. For help, `?facet_wrap` in the console.
+   - Which cut has the least variance?
+   - [Variance - Wikipedia](https://en.wikipedia.org/wiki/Variance)
+
+```{r}
+## YOUR CODE HERE
+
+```
+
+
+# Next Steps
+
+Once done here, please complete the questions in Canvas, if you have not already
+done so. Have a great week!
+   
