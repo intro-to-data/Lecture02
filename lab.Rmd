@@ -58,7 +58,7 @@ is a very useful feature.
 
 # Lab
 
-## Task 01
+## Task 01 Setup
 
 - Load the tidyverse and our data.
 - Look at the output from this code chuck. How many rows of data are in the 

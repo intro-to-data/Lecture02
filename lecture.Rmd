@@ -158,6 +158,10 @@ Oooh. I bet that returned an error.
 - This error is telling you you haven't imported the tidyverse packages.
 - Try running the NEXT code chunk. Can you spot the difference?
 
+### Setup
+
+This is the setup section for this lecture, even if it is waaay down here.
+
 ```{r fig.align='center', message=FALSE, warning=FALSE, paged.print=TRUE}
 library(tidyverse)
 data("chickwts")
