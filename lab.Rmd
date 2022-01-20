@@ -1,18 +1,12 @@
 ---
 title: "Introduction to `ggplot`"
-author: "YOUR NAME HERE"
 date: "Week 02"
 output: html_notebook
 ---
 
 
 
-# Week 02 - Flowers for Algernon
-
-> Anyone who has common sense will remember that the bewilderments of the eye
- are of two kinds, and arise from two causes, either from coming out of the light
- or from going into the light, which is true of the mind's eye, quite as much as
- of the bodily eye.
+# Introduction
 
 Our data set this week is the `diamonds` data set. It contains the price and
 attributes of nearly 54,000 round cut diamonds. Variables include:
@@ -60,15 +54,11 @@ is a very useful feature.
 
 ## Task 01 Setup
 
-- Load the tidyverse and our data.
 - Look at the output from this code chuck. How many rows of data are in the 
   diamonds data set?
 
-```{r}
-## ALWAYS load needed packages BEFORE trying to use them.
-## The tidyverse gives us our graphing tools. 
-## And readr gives us a good way to import CSV files.
-
+```{r setup, message=FALSE, warning=FALSE, paged.print=TRUE}
+rm(list = ls())
 library(tidyverse)
 data(diamonds)
 diamonds
@@ -88,7 +78,7 @@ The following code chunk won't work until you replace all the ?s. Note the red
 circles to the left of the line numbers. This is RStudio telling you the code 
 has some problems. In this case, that's not an accident but it often is.
 
-```{r}
+```{r fig.align='center', out.width = '75%'}
 ggplot(
   data = ?,
   aes(x = ?, y = ?)
@@ -101,7 +91,7 @@ ggplot(
 Create a box plot which shows how `price` varies across diamonds of different
 `clarity`.
 
-```{r}
+```{r fig.align='center', out.width = '75%'}
 ## YOUR CODE HERE
 
 ```
@@ -115,7 +105,7 @@ Create a bar plot to determine the most common diamond `cut` in this data set.
 Question: What is the most common diamond `cut`? (You will need to know this for
 Canvas.)
 
-```{r}
+```{r fig.align='center', out.width = '75%'}
 ## YOUR CODE HERE
 
 ```
@@ -130,7 +120,7 @@ diamond prices? (The default number of bins, 30, is fine.)
    - [Normal Distribution - Wikipedia](https://en.wikipedia.org/wiki/Normal_distribution)
    - [Long Tail - Wikipedia](https://en.wikipedia.org/wiki/Long_tail)
 
-```{r}
+```{r fig.align='center', out.width = '75%'}
 ## YOUR CODE HERE
 
 ```
@@ -142,7 +132,7 @@ Create a second histogram of diamond price, and stratify this by diamond cut.
    - Which cut has the least variance?
    - [Variance - Wikipedia](https://en.wikipedia.org/wiki/Variance)
 
-```{r}
+```{r fig.align='center', out.width = '75%'}
 ## YOUR CODE HERE
 
 ```
