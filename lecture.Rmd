@@ -89,10 +89,9 @@ This is the setup section for this lecture.
 ## Discuss this thoroughly.
 library(tidyverse)
 penguins <- read_csv("data/penguins.csv")
-penguins
 ```
 
-- Remember, you MUST run this code chunk once per session.
+- You MUST run this code chunk once per session.
 
 
 
