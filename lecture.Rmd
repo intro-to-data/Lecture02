@@ -22,7 +22,14 @@ output:
 You can read this lecture documentation one of TWO ways:
 
 1. As-is
-2. Hit the Preview button (<img src="./includes/preview.png" height="15">) in the menu to render the discussion into a HTML document. (This is the pretty option.)
+2. Run all code chunks (<img src="./includes/run-chunks-2.png" height="20">) and then hit the "Preview" button (<img src="./includes/preview.png" height="15">) in the menu to render the discussion into a HTML document. (This is the pretty option.) To run all code chunks:
+
+```{r echo=FALSE, fig.align='center', out.width = '60%'}
+url <- "./includes/run-chunks.png"
+knitr::include_graphics(url)
+```
+
+And now we just need something silly. You know XKCD is the only way you get through this lecture.
 
 ```{r echo=FALSE, fig.align='center', out.width = '40%'}
 url <- "https://imgs.xkcd.com/comics/data.png"
