@@ -8,23 +8,7 @@ output: html_notebook
 
 # Introduction
 
-Our data set this week is the `diamonds` data set. It contains the price and
-attributes of nearly 54,000 round cut diamonds. Variables include:
-
-- **price:** price in US dollars (\$326–\$18,823)
-- **carat:** weight of the diamond (0.2–5.01)
-- **cut:** quality of the cut (Fair, Good, Very Good, Premium, Ideal)
-- **color:** diamond color, from D (best) to J (worst)
-- **clarity:** a measurement of how clear the diamond is (I1 (worst), SI2, SI1, VS2,
-VS1, VVS2, VVS1, IF (best))
-- **x:** length in mm (0–10.74)
-- **y:** width in mm (0–58.9)
-- **z:** depth in mm (0–31.8)
-- **depth:** total depth percentage = z / mean(x, y) = 2 * z / (x + y) (43–79)
-- **table:** width of top of diamond relative to widest point (43–95)
- 
-You do not need to be knowledgeable about diamonds or their cut/value to succeed
-on this lab. All you need is the data and a touch of common sense.
+Tonight's lab will further explore the Palmer Penguins data.
 
 ```{r echo=false, fig.align='center'}
 url <- "https://imgs.xkcd.com/comics/scientific_paper_graph_quality.png"
@@ -33,112 +17,138 @@ knitr::include_graphics(url)
 
 
 
-# Stories from Data
-
-One of the most important skills you can learn is how to effectively understand
-data visually. To do so, you must first understand when to use different kinds
-of graphs/plots of data.
-
-Below are some useful links which we discussed in class:
-- [Data To Viz](https://www.data-to-viz.com/)
-- [GGPlot Documentation](https://ggplot2.tidyverse.org/index.html)
-
-To get help with ANY command in R, prepend the function name with a question
-mark. For example, to get help with the `length` command, enter `?length` in the
-R Console and RStudio will display the help documentation for that function. This
-is a very useful feature.
-
-
-
 # Lab
 
 ## Task 01 Setup
 
-- Look at the output from this code chuck. How many rows of data are in the 
-  diamonds data set?
+- Look at the output from this code chunk. How many rows of data are in the 
+  penguins data set?
 
 ```{r setup, message=FALSE, warning=FALSE, paged.print=TRUE}
-rm(list = ls())
 library(tidyverse)
-data(diamonds)
-diamonds
+penguins <- read_csv("data/penguins.csv")
+penguins
 ``` 
-
-Fun Fact: One year I asked students to complete this lab in Excel. It crashed
-the VMs in the lab. Excel can do this, but it takes quite a bit of RAM.
 
 ## Task 02
 
- Create a scatter plot which shows the relationship between `carat` and `price`.
+ Create a scatter plot which shows the relationship between penguin body mass and flipper length.
 
-   - The first step is to use the `ggplot` function.
-   - See `geom_point()`
-
-The following code chunk won't work until you replace all the ?s. Note the red 
-circles to the left of the line numbers. This is RStudio telling you the code 
-has some problems. In this case, that's not an accident but it often is.
+The following code chunk will not work until you replace all the ?s. Note the red circles to the left of the line numbers. This is RStudio telling you the code has some problems. These are problems you need to correct.
 
 ```{r fig.align='center', out.width = '75%'}
-ggplot(
-  data = ?,
-  aes(x = ?, y = ?)
-) +
+ggplot(data = ?, aes(x = ?, y = ?)) +
   geom_?()
 ```
 
+```{r fig.align='center', out.width = '75%'}
+## Run this code chunk when you would like to see what the answer to
+## Task 02 should look like.
+file <- "includes/lab-task-02.png"
+knitr::include_graphics(file)
+```
+
+How would you describe this relationship?
+
+- Positive
+- Negative
+- No clear relationship
+
 ## Task 03
 
-Create a box plot which shows how `price` varies across diamonds of different
-`clarity`.
+Create a box plot which shows how body mass varies across penguins of different
+species.
 
 ```{r fig.align='center', out.width = '75%'}
 ## YOUR CODE HERE
 
+```
+
+Based on this box plot, which type of penguin is, on average, heaviest?
+
+```{r fig.align='center', out.width = '75%'}
+## Run this code chunk when you would like to see what the answer to
+## Task 03 should look like.
+file <- "includes/lab-task-03.png"
+knitr::include_graphics(file)
 ```
 
 ## Task 04
 
-Create a bar plot to determine the most common diamond `cut` in this data set.
-
-   - `geom_bar()` will be useful.
-   
-Question: What is the most common diamond `cut`? (You will need to know this for
-Canvas.)
+Create a bar plot to determine the most common penguin sex in this data set.
 
 ```{r fig.align='center', out.width = '75%'}
 ## YOUR CODE HERE
 
+```
+
+Note: Although the ratio of female to male penguins is ALMOST exactly 1, the human eye is able to tell which bar is higher. In contrast, the human eye struggles with the following:
+
+```{r fig.align='center', out.width = '75%'}
+ggplot(data = penguins %>% filter(!is.na(sex)) %>% count(sex), aes(x = "", y = n, fill = sex)) +
+  geom_col() +
+  coord_polar("y")
+```
+
+I dropped the eleven penguins with an unknown sex from this pie chart and it is really hard to tell which is larger. And yet, it was not hard to figure this out on when using a bar plot. This is a ramification of how the human eye/brain work and is a simplistic illustration of why you should ONLY use a pie chart if your goal is to show that one group is a teensy-tiny fraction of the total or that the difference between two groups is negligible.
+
+Data science is about telling stories with your data, just be conscious of the story you are trying to tell. And if you ever use a 3D pie chart I will hunt you down and fail you posthumously.
+
+```{r fig.align='center', out.width = '75%'}
+## Run this code chunk when you would like to see what the answer to
+## Task 04 should look like.
+file <- "includes/lab-task-04.png"
+knitr::include_graphics(file)
 ```
 
 ## Task 05
 
-Create a histogram of diamond price. Do you notice anything about the
-distribution of diamond prices? How would you describe the distribution of
-diamond prices? (The default number of bins, 30, is fine.)
+Create a histogram of penguin flipper length. Which phrase below best describes the distribution of penguin flipper length?
 
-   - See `geom_histogram`
-   - [Normal Distribution - Wikipedia](https://en.wikipedia.org/wiki/Normal_distribution)
-   - [Long Tail - Wikipedia](https://en.wikipedia.org/wiki/Long_tail)
+- Normally distributed
+- Bimodal
+- Trimodal
+- Long Tailed   
+
+The default number of bins, 30, is adequate but the answer is clearer if you use `bins = 15`. To learn more, try looking running `?geom_histogram` in the console or using the built-in help mechanism.
 
 ```{r fig.align='center', out.width = '75%'}
 ## YOUR CODE HERE
 
 ```
 
+Additional Resources:
+- [Normal Distribution - Wikipedia](https://en.wikipedia.org/wiki/Normal_distribution)
+- [Long Tail - Wikipedia](https://en.wikipedia.org/wiki/Long_tail)
+- [Bimodality - Wikipedia](https://en.wikipedia.org/wiki/Multimodal_distribution)
+
+```{r fig.align='center', out.width = '75%'}
+## Run this code chunk when you would like to see what the answer to
+## Task 05 should look like.
+file <- "includes/lab-task-05-default.png"
+knitr::include_graphics(file)
+file <- "includes/lab-task-05-best.png"
+knitr::include_graphics(file)
+```
+
 ## Task 06
 
-Create a second histogram of diamond price, and stratify this by diamond cut.
-   - Use `facet_wrap()`. For help, `?facet_wrap` in the console.
-   - Which cut has the least variance?
-   - [Variance - Wikipedia](https://en.wikipedia.org/wiki/Variance)
+Create a second histogram of penguin flipper length, and stratify this by species cut. Which penguin species has the longest average flipper length?
 
 ```{r fig.align='center', out.width = '75%'}
 ## YOUR CODE HERE
 
+```
+
+```{r fig.align='center', out.width = '75%'}
+## Run this code chunk when you would like to see what the answer to
+## Task 06 should look like.
+file <- "includes/lab-task-06.png"
+knitr::include_graphics(file)
 ```
 
 # Next Steps
 
 Once done here, please complete the questions in Canvas, if you have not already
-done so. Have a great week!
+done so. Have a great weekend!
    
