@@ -388,6 +388,16 @@ file <- "includes/ggplot flow.drawio.png"
 knitr::include_graphics(file)
 ```
 
+Further reading:
+
+- [Data To Viz](https://www.data-to-viz.com/)
+- [GGPlot Documentation](https://ggplot2.tidyverse.org/index.html)
+- [Tidyverse Learn](https://www.tidyverse.org/learn/)
+- [r-charts.com/color](https://r-charts.com/colors/)
+- [Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=Oranges&n=5)
+
+
+
 # Learning isn't easy
 
 > The bad news is that when ever you learn a new skill your going to suck. It’s going to be frustrating. The good news is that is typical and happens to everyone and it is only temporary. You can’t go from knowing nothing to becoming an expert without going through a period of great frustration and great suckiness.
@@ -396,13 +406,9 @@ knitr::include_graphics(file)
 In addition to these lecture notes, labs, readings, videos, etc. there are other
 ways to find help.
 
-- Data Viz Tips: [https://www.data-to-viz.com/](https://www.data-to-viz.com/)
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/r)
-- [Tidyverse Learn](https://www.tidyverse.org/learn/)
 - `?mean` If you prepend a `?` to a command, R provide you with built-in 
   function documentation.
-- [ggplot reference](https://ggplot2.tidyverse.org/reference/index.html#section-plot-basics)
-- [Use Google Search](https://www.google.com/search?source=hp&ei=y-kNYLykM_-i5NoPo5m76AE&q=R+mean&oq=R+mean&gs_lcp=CgZwc3ktYWIQAzILCAAQsQMQgwEQyQMyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6CAgAEOoCEI8BOggIABCxAxCDAToICC4QsQMQgwE6CAguEMcBEKMCOg4ILhCxAxCDARDHARCjAjoCCC46DgguELEDEIMBEMkDEJMCOggILhDHARCvAToFCAAQsQM6BQguELEDOgUIABDJA1DkFVifGmCmHGgBcAB4AIAB0gGIAegIkgEFMC40LjKYAQCgAQGqAQdnd3Mtd2l6sAEK&sclient=psy-ab&ved=0ahUKEwj8tcrlxLXuAhV_EVkFHaPMDh0Q4dUDCAg&uact=5)
 
 Long story short, programming is not easy. And it can be frustrating when you are learning. I'd like to have a class forum, but we need to make this decision together.
 
