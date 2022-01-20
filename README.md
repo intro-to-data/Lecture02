@@ -7,6 +7,9 @@ package](https://allisonhorst.github.io/palmerpenguins/). It was stored as CSV
 in this repo to reinforce the workflow of importing the data from an external
 source, in this case CSV.
 
+The terrific penguin-themed artwork here is by @allison_horst. Other artwork
+come from XKCD, Hadley Wickham, and some screenshots and diagrams by Andy Choens.
+
 Data originally published in:
 
     Gorman KB, Williams TD, Fraser WR (2014). Ecological sexual dimorphism and environmental variability within a community of Antarctic penguins (genus Pygoscelis). PLoS ONE 9(3):e90081. https://doi.org/10.1371/journal.pone.0090081
