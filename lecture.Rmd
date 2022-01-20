@@ -219,6 +219,17 @@ For more information on colors:
 - [r-charts.com/color](https://r-charts.com/colors/)
 - [Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=Oranges&n=5)
 
+We can also overlay our histograms:
+
+```{r fig.align='center', out.width = '75%'}
+ggplot(penguins, aes(x = body_mass_g, fill = species)) +
+  geom_histogram(alpha = .6, position = "identity") +
+  scale_fill_manual(values = c("#ff7a03", "#bf5cca", "#0f7175"))
+labs(title = "Penguin Mass Distribution by Species", x = "Mass (g)", y = "N")
+```
+
+
+
 ## Pie Charts
 
 1. The first rule of pie charts is that you should almost never use pie charts.
