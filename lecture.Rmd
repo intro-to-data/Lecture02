@@ -352,7 +352,12 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
 
 ### Scatter Plot
 
-A scatter plot shows the relationship between two continuous numeric variables.
+A scatter plot shows the relationship between two continuous numeric variables. In this example, we will examine the relationship between the bill length and bill depth of a penguin.
+
+```{r echo=FALSE, fig.align='center', out.width = '75%'}
+url <- "https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png"
+knitr::include_graphics(url)
+```
 
 ```{r fig.align='center', out.width = '75%'}
 ## This is slightly different from what is shown in the book.

@@ -85,7 +85,10 @@ Create a bar plot to determine the most common penguin sex in this data set.
 Note: Although the ratio of female to male penguins is ALMOST exactly 1, the human eye is able to tell which bar is higher. In contrast, the human eye struggles with the following:
 
 ```{r fig.align='center', out.width = '75%'}
-ggplot(data = penguins %>% filter(!is.na(sex)) %>% count(sex), aes(x = "", y = n, fill = sex)) +
+ggplot(
+  data = penguins %>% filter(!is.na(sex)) %>% count(sex),
+  aes(x = "", y = n, fill = sex)
+) +
   geom_col() +
   coord_polar("y")
 ```
@@ -130,6 +133,8 @@ knitr::include_graphics(file)
 file <- "includes/lab-task-05-best.png"
 knitr::include_graphics(file)
 ```
+
+In introductory statistics there is a great deal of focus on "normal" distributions, which are more formally called Gaussian distributions. Biological factors such as weight or height are well modeled by the normal distribution. But many other natural processes are not well modeled by this favorite of introductory statistics. Take a moment at some point to read through the PDF found in this week's materials: [We need to Let Go of the Bell Curve](/.We-Need-to-Let-Go-of-the-Bell-Curve.pdf).
 
 ## Task 06
 
