@@ -138,7 +138,7 @@ In introductory statistics there is a great deal of focus on "normal" distributi
 
 ## Task 06
 
-Create a second histogram of penguin flipper length, and stratify this by species cut. Which penguin species has the longest average flipper length?
+Create a second histogram of penguin flipper length, and stratify this by species. Which penguin species has the longest average flipper length?
 
 ```{r fig.align='center', out.width = '75%'}
 ## YOUR CODE HERE
