@@ -25,8 +25,9 @@ knitr::include_graphics(url)
   penguins data set?
 
 ```{r setup, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(rio)
 library(tidyverse)
-penguins <- read_csv("data/penguins.csv")
+penguins <- import("data/penguins.csv")
 penguins
 ``` 
 

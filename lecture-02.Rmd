@@ -20,8 +20,9 @@ This is the setup section for this lecture.
 
 ```{r setup, message=FALSE, warning=FALSE}
 ## Discuss this thoroughly.
+library(rio)
 library(tidyverse)
-penguins <- read_csv("data/penguins.csv")
+penguins <- import("data/penguins.csv")
 ```
 
 - You MUST run this code chunk once per session.
