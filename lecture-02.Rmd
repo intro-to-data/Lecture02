@@ -97,9 +97,9 @@ if groups are similar or dissimilar to one another.
 
 ```{r fig.align='center', out.width = '75%'}
 ggplot(
-  data = penguins,
-  mapping = aes(x = species)
-  ) +
+    data = penguins,
+    mapping = aes(x = species)
+) +
     geom_bar(fill = "darkblue") +
     labs(title = "Count of Species by Type")
 ```
@@ -113,9 +113,9 @@ If we wanted to compare the types of penguins found on each island, we could use
 ```{r fig.align='center', out.width = '75%'}
 ## We changed how to define x and fill!
 ggplot(
-  data = penguins,
-  mapping = aes(x = island, fill = species)
-  ) +
+    data = penguins,
+    mapping = aes(x = island, fill = species)
+) +
     geom_bar() +
     labs(title = "Count of Species Type by Island")
 ```
@@ -245,22 +245,23 @@ ggplot(penguins, aes(x = body_mass_g)) +
 
 ```{r fig.align='center', out.width = '75%'}
 ggplot(
-  data = penguins,
-  mapping = aes(x = body_mass_g)
-  ) +
+    data = penguins,
+    mapping = aes(x = body_mass_g)
+) +
     geom_density(
-      fill = "#bf5cca",
-      weight = 5
-      ) +
-  geom_histogram(
-      aes(y = stat(density)),
-      fill = "#0f7175",
-      alpha = .5
-        ) +
+        fill = "#bf5cca",
+        weight = 5
+    ) +
+    geom_histogram(
+        aes(y = stat(density)),
+        fill = "#0f7175",
+        alpha = .5
+    ) +
     labs(
-      title = "Penguin Mass Distribution",
-      x = "Mass (g)",
-      y = "N")
+        title = "Penguin Mass Distribution",
+        x = "Mass (g)",
+        y = "N"
+    )
 ```
 
 We can also compare across islands.
@@ -306,12 +307,13 @@ knitr::include_graphics(url)
 ```{r fig.align='center', out.width = '75%'}
 ## This is slightly different from what is shown in the book.
 ggplot(
-  data = penguins,
-  mapping = aes(
-    x = bill_length_mm,
-    y = bill_depth_mm,
-    color = species)
-  ) +
+    data = penguins,
+    mapping = aes(
+        x = bill_length_mm,
+        y = bill_depth_mm,
+        color = species
+    )
+) +
     geom_point() +
     labs(
         title = "Relationship between bill length and bill depth",
@@ -326,15 +328,15 @@ And we can even add a regression line.
 
 ```{r fig.align='center', out.width = '75%'}
 ggplot(
-  data = penguins,
-  mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species)
-  ) +
+    data = penguins,
+    mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species)
+) +
     geom_point() +
     geom_smooth(
-      method = "lm",
-      color = "maroon",
-      size = 1.5
-      ) +
+        method = "lm",
+        color = "maroon",
+        linewidth = 1.5
+    ) +
     labs(
         title = "Relationship between bill length and bill depth",
         x = "Bill Length (mm)",
@@ -347,7 +349,7 @@ Ooooh. I don't think that is what we want to do.
 ```{r fig.align='center', out.width = '75%'}
 ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
     geom_point() +
-    geom_smooth(method = "lm", color = "maroon", size = 1.5) +
+    geom_smooth(method = "lm", color = "maroon", linewidth = 1.5) +
     labs(
         title = "Relationship between bill length and bill depth",
         x = "Bill Length (mm)",
