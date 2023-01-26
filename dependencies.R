@@ -4,8 +4,11 @@ p <- c(
     "ggrepel",
     "GGally",
     "knitr",
-    "rmarkdown",
+    "markdown",
     "revealjs",
+    "rio",
+    "rmarkdown",
+    "shiny",
     "tidyverse"
 )
 install.packages(p)
