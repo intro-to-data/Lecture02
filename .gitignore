@@ -5,3 +5,5 @@
 .RData
 .Ruserdata
 .vscode
+lecture-01_files/*
+lecture-02_files/*

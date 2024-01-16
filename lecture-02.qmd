@@ -2,14 +2,7 @@
 title: "Introduction to `ggplot`"
 author: "Andy Choens"
 date: "Week 02"
-output: 
-  html_notebook:
-    toc: true
-    toc_float:
-      toc_collapsed: true
-    toc_depth: 3
-    number_sections: true
-    theme: cerulean
+format: html
 ---
 
 
@@ -18,7 +11,10 @@ output:
 
 This is the setup section for this lecture.
 
-```{r setup, message=FALSE, warning=FALSE}
+```{r setup}
+#| message: false
+#| warning: false
+
 ## Discuss this thoroughly.
 library(rio)
 library(tidyverse)
@@ -39,11 +35,13 @@ Reasons to plot data:
 
 Regardless of WHY we plot our data, we will use the ggplot series of commands. And these commands are structured to help us remember how to use them:
 
-```{r echo=FALSE, fig.align='center'}
+```{r}
+#| echo: false
+#| fig.align: 'center'
+
 file <- "includes/ggplot flow.drawio.png"
 knitr::include_graphics(file)
 ```
-
 
 - Your code MUST HAVE the stuff in the orange boxes.
 - The stuff in seafoam green? That's optional.
@@ -51,14 +49,20 @@ knitr::include_graphics(file)
 
 ## Penguins!!!
 
-```{r echo=FALSE, fig.align='center', out.width = '75%'}
+```{r}
+#| echo: false
+#| fig.align: 'center'
+#| out.width: '75%'
+
 url <- "https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png"
 knitr::include_graphics(url)
 ```
 
 First, let's look at our data:
 
-```{r paged.print=TRUE}
+```{r}
+#| paged.print=TRUE
+
 penguins
 ```
 
@@ -69,7 +73,9 @@ penguins
 
 Looking at the data directly can be overwhelming, especially for wide data sets. The glimpse function offers another way to get an overview of the data.
 
-```{r paged.print=TRUE}
+```{r}
+#| paged.print=TRUE
+
 glimpse(penguins)
 ```
 
@@ -96,7 +102,10 @@ if groups are similar or dissimilar to one another.
 
 ### Bar Plot
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ggplot(
     data = penguins,
     mapping = aes(x = species)
@@ -111,7 +120,10 @@ Note:
 
 If we wanted to compare the types of penguins found on each island, we could use a stacked bar plot.
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ## We changed how to define x and fill!
 ggplot(
     data = penguins,
@@ -123,7 +135,10 @@ ggplot(
 
 This looks nice, but it is hard to tell which island has the most Adelie penguins. A better way to do this would be:
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ## We changed how to define x and fill!
 ggplot(data = penguins, mapping = aes(x = species, fill = species)) +
     geom_bar() +
@@ -138,7 +153,10 @@ Note:
 
 We can better control the color of our groups:
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ## We changed how to define x and fill!
 ggplot(data = penguins, mapping = aes(x = island, fill = species)) +
     geom_bar() +
@@ -148,7 +166,10 @@ ggplot(data = penguins, mapping = aes(x = island, fill = species)) +
 
 or . . .
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ## We changed how to define x and fill!
 ggplot(data = penguins, mapping = aes(x = island, fill = species)) +
     geom_bar() +
@@ -168,12 +189,15 @@ For more information on colors:
 
 With that said, I want to discuss this pie business briefly.
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ## Don't violate the first rule of pie charts.
 penguins_by_species <-
-    penguins |>
-    group_by(species) |>
-    summarise(n = n()) |>
+    penguins %>%
+    group_by(species) %>%
+    summarise(n = n()) %>%
     mutate(p = 100 * n / sum(n))
 ggplot(data = penguins_by_species, mapping = aes(x = "", y = n, fill = species)) +
     geom_col() +
@@ -183,12 +207,15 @@ ggplot(data = penguins_by_species, mapping = aes(x = "", y = n, fill = species))
 
 But they can be a little hard to read.
 
-```{r fig.align='center', out.width = '75%'}
+```{r }
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ## Don't violate the first rule of pie charts.
 penguins_by_species <-
-    penguins |>
-    group_by(island, species) |>
-    summarise(n = n()) |>
+    penguins %>%
+    group_by(island, species) %>%
+    summarise(n = n()) %>%
     mutate(p = 100 * n / sum(n))
 ggplot(data = penguins_by_species, mapping = aes(x = "", y = n, fill = species)) +
     geom_col() +
@@ -205,7 +232,10 @@ We use tools such as histograms, density plots, and violin plots to plot a singl
 
 ### Histogram
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center' 
+#| out.width: '75%'
+
 ggplot(penguins, aes(x = body_mass_g)) +
     geom_histogram(fill = "darkblue") +
     labs(title = "Penguin Mass Distribution", x = "Mass (g)", y = "N")
@@ -234,7 +264,10 @@ this case.)
 
 But, there are other ways to show the distribution of a continuous variable such as a density plot. (I like density plots.)
   
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center' 
+#| out.width: '75%'
+
 ggplot(penguins, aes(x = body_mass_g)) +
     geom_density(color = "black", fill = "#ff7a03") +
     labs(title = "Penguin Mass Distribution", x = "Mass (g)")
@@ -244,7 +277,10 @@ ggplot(penguins, aes(x = body_mass_g)) +
 - The area under the graph must be equal to 1.
 - And if we want to go overboard, we can do both in one plot.
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center' 
+#| out.width: '75%'
+
 ggplot(
     data = penguins,
     mapping = aes(x = body_mass_g)
@@ -267,7 +303,10 @@ ggplot(
 
 We can also compare across islands.
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ggplot(penguins, aes(x = body_mass_g)) +
     geom_density(fill = "#0f7175") +
     labs(title = "Penguin Mass Distribution", x = "Mass (g)") +
@@ -284,7 +323,10 @@ Note:
 
 These are just two more ways to plot the distribution of a continuous variable.
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ggplot(penguins, aes(x = island, y = body_mass_g)) +
     geom_boxplot(color = "darkred") +
     labs(title = "Penguin Mass Distribution", x = "Island", y = "Weight (g)")
@@ -300,12 +342,19 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
 
 A scatter plot shows the relationship between two continuous numeric variables. In this example, we will examine the relationship between the bill length and bill depth of a penguin.
 
-```{r echo=FALSE, fig.align='center', out.width = '75%'}
+```{r}
+#| echo: false
+#| fig.align: 'center'
+#| out.width: '75%'
+
 url <- "https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png"
 knitr::include_graphics(url)
 ```
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center' 
+#| out.width: '75%'
+
 ## This is slightly different from what is shown in the book.
 ggplot(
     data = penguins,
@@ -327,7 +376,10 @@ ggplot(
 
 And we can even add a regression line.
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center' 
+#| out.width: '75%'
+
 ggplot(
     data = penguins,
     mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species)
@@ -347,7 +399,10 @@ ggplot(
 
 Ooooh. I don't think that is what we want to do.
 
-```{r fig.align='center', out.width = '75%'}
+```{r}
+#| fig.align: 'center'
+#| out.width: '75%'
+
 ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
     geom_point() +
     geom_smooth(method = "lm", color = "maroon", linewidth = 1.5) +
@@ -365,7 +420,10 @@ That's better. Also, this is a fun example of [Simpson's Paradox](https://www.br
 
 # Do you believe me yet?
 
-```{r echo=FALSE, fig.align='center'}
+```{r}
+#| echo: false 
+#| fig.align: 'center'
+
 file <- "includes/ggplot flow.drawio.png"
 knitr::include_graphics(file)
 ```
@@ -374,7 +432,10 @@ knitr::include_graphics(file)
 
 # Questions?
 
-```{r echo=FALSE, fig.align='center'}
+```{r}
+#| echo: false 
+#| fig.align: 'center'
+
 url <- "./includes/ggplot-logo.png"
 knitr::include_graphics(url)
 ```

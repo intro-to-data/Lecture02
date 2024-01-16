@@ -87,7 +87,7 @@ Note: Although the ratio of female to male penguins is ALMOST exactly 1, the hum
 
 ```{r fig.align='center', out.width = '75%'}
 ggplot(
-  data = penguins |> filter(!is.na(sex)) |> count(sex),
+  data = penguins %>% filter(!is.na(sex)) %>% count(sex),
   aes(x = "", y = n, fill = sex)
 ) +
   geom_col() +

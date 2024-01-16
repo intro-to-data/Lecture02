@@ -2,10 +2,10 @@
 title: "Introduction to `ggplot`"
 author: "Andy Choens"
 date: "Week 02"
-output:
-  revealjs::revealjs_presentation:
-    transition: slide
+format: revealjs
 ---
+
+
 
 # Lecture Goals
 
@@ -18,6 +18,8 @@ output:
 - Lecture 02
   - Intro To Data Viz - GGPLOT
   - Lab
+
+
 
 # Using These Notes (1/2)
 
@@ -60,11 +62,15 @@ url <- "https://imgs.xkcd.com/comics/drinking_fountains.png"
 knitr::include_graphics(url)
 ```
 
+
+
 # Code Chunks
 
 - RMarkdown files contain plain text & code.
 - Code is found in code chunks, fenced using back ticks.
 - The FIRST code chunk is called the setup chunk.
+
+
 
 # Setup Chunk
 
@@ -82,6 +88,8 @@ This incredibly important code chunk:
 > The bad news is that when ever you learn a new skill your going to suck. It’s going to be frustrating. The good news is that is typical and happens to everyone and it is only temporary. You can't go from knowing nothing to becoming an expert without going through a period of great frustration and great suckiness.
 >
 > --Hadley Wickham
+
+
 
 # HELP!
 
@@ -102,6 +110,8 @@ In addition to these lecture notes, labs, readings, videos, etc. there are other
 - [r-charts.com/color](https://r-charts.com/colors/)
 - [Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=Oranges&n=5)
 
+
+
 # You Need This Joke
 
 <br />
@@ -110,6 +120,3 @@ In addition to these lecture notes, labs, readings, videos, etc. there are other
 url <- "https://imgs.xkcd.com/comics/data.png"
 knitr::include_graphics(url)
 ```
-
-
-
