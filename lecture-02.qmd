@@ -52,7 +52,7 @@ knitr::include_graphics(file)
 ```{r}
 #| echo: false
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 url <- "https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png"
 knitr::include_graphics(url)
@@ -104,7 +104,7 @@ if groups are similar or dissimilar to one another.
 
 ```{r}
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ggplot(
     data = penguins,
@@ -122,7 +122,7 @@ If we wanted to compare the types of penguins found on each island, we could use
 
 ```{r}
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ## We changed how to define x and fill!
 ggplot(
@@ -137,7 +137,7 @@ This looks nice, but it is hard to tell which island has the most Adelie penguin
 
 ```{r}
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ## We changed how to define x and fill!
 ggplot(data = penguins, mapping = aes(x = species, fill = species)) +
@@ -155,7 +155,7 @@ We can better control the color of our groups:
 
 ```{r}
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ## We changed how to define x and fill!
 ggplot(data = penguins, mapping = aes(x = island, fill = species)) +
@@ -168,7 +168,7 @@ or . . .
 
 ```{r}
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ## We changed how to define x and fill!
 ggplot(data = penguins, mapping = aes(x = island, fill = species)) +
@@ -191,7 +191,7 @@ With that said, I want to discuss this pie business briefly.
 
 ```{r}
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ## Don't violate the first rule of pie charts.
 penguins_by_species <-
@@ -209,7 +209,7 @@ But they can be a little hard to read.
 
 ```{r }
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ## Don't violate the first rule of pie charts.
 penguins_by_species <-
@@ -234,7 +234,7 @@ We use tools such as histograms, density plots, and violin plots to plot a singl
 
 ```{r}
 #| fig.align: 'center' 
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ggplot(penguins, aes(x = body_mass_g)) +
     geom_histogram(fill = "darkblue") +
@@ -266,7 +266,7 @@ But, there are other ways to show the distribution of a continuous variable such
   
 ```{r}
 #| fig.align: 'center' 
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ggplot(penguins, aes(x = body_mass_g)) +
     geom_density(color = "black", fill = "#ff7a03") +
@@ -279,7 +279,7 @@ ggplot(penguins, aes(x = body_mass_g)) +
 
 ```{r}
 #| fig.align: 'center' 
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ggplot(
     data = penguins,
@@ -305,7 +305,7 @@ We can also compare across islands.
 
 ```{r}
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ggplot(penguins, aes(x = body_mass_g)) +
     geom_density(fill = "#0f7175") +
@@ -325,14 +325,14 @@ These are just two more ways to plot the distribution of a continuous variable.
 
 ```{r}
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ggplot(penguins, aes(x = island, y = body_mass_g)) +
     geom_boxplot(color = "darkred") +
     labs(title = "Penguin Mass Distribution", x = "Island", y = "Weight (g)")
 ```
 
-```{r fig.align='center', out.width = '75%'}
+```{r fig.align='center', fig-width = '75%'}
 ggplot(penguins, aes(x = island, y = body_mass_g)) +
     geom_violin(color = "darkred") +
     labs(title = "Penguin Mass Distribution", x = "Island", y = "Weight (g)")
@@ -345,7 +345,7 @@ A scatter plot shows the relationship between two continuous numeric variables. 
 ```{r}
 #| echo: false
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 url <- "https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png"
 knitr::include_graphics(url)
@@ -353,7 +353,7 @@ knitr::include_graphics(url)
 
 ```{r}
 #| fig.align: 'center' 
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ## This is slightly different from what is shown in the book.
 ggplot(
@@ -378,7 +378,7 @@ And we can even add a regression line.
 
 ```{r}
 #| fig.align: 'center' 
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ggplot(
     data = penguins,
@@ -401,7 +401,7 @@ Ooooh. I don't think that is what we want to do.
 
 ```{r}
 #| fig.align: 'center'
-#| out.width: '75%'
+#| fig-width: '75%'
 
 ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
     geom_point() +

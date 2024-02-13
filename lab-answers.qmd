@@ -11,7 +11,7 @@ output: html_notebook
 Tonight's lab will further explore the Palmer Penguins data.
 
 ```{r}
-#| echo: false
+#| echo=false
 #| fig-align: 'center'
 
 url <- "https://imgs.xkcd.com/comics/scientific_paper_graph_quality.png"
@@ -181,3 +181,4 @@ knitr::include_graphics(file)
 Once done here, please complete the questions in Canvas, if you have not already done so. 
 
 Have a great weekend!
+   
