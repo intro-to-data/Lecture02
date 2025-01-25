@@ -48,8 +48,8 @@ The following code chunk will not work until you replace all the ?s. Note the re
 #| fig-align: 'center'
 #| fig-width: '75%'
 
-ggplot(data = ?, aes(x = ?, y = ?)) +
-  geom_?()
+ggplot(data = penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point()
 ```
 
 ```{r}
@@ -74,7 +74,8 @@ species.
 
 ```{r}
 ## YOUR CODE HERE
-
+ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot()
 ```
 
 Based on this box plot, which type of penguin is, on average, heaviest?
@@ -94,7 +95,8 @@ Create a bar plot to determine the most common penguin sex in this data set.
 
 ```{r}
 ## YOUR CODE HERE
-
+ggplot(data = penguins, mapping = aes(x = sex)) +
+  geom_bar()
 ```
 
 Note: Although the ratio of female to male penguins is ALMOST exactly 1, the human eye is able to tell which bar is higher. In contrast, the human eye struggles with the following:
@@ -138,6 +140,13 @@ The default number of bins, 30, is adequate but the answer is clearer if you use
 ```{r}
 ## YOUR CODE HERE
 
+# This is the default.
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm)) +
+  geom_histogram()
+
+# And this has a tweaked number of buns.
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm)) +
+  geom_histogram(bins = 30)
 ```
 
 Additional Resources:
@@ -164,7 +173,9 @@ Create a second histogram of penguin flipper length, and stratify this by specie
 
 ```{r}
 ## YOUR CODE HERE
-
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm)) +
+  geom_histogram() +
+  facet_wrap(~species)
 ```
 
 ```{r}
